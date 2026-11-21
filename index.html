@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A1TX Tournament Register</title>
+<style>
+:root{--bg:#f3f5f9;--panel:#fff;--ink:#171b26;--muted:#747d8e;--line:#e1e5ed;--accent:#d92738;--accent-dark:#b91f2d;--nav:#151923;--nav-hover:#242b38;--nav-muted:#aeb6c5;--green:#16834b;--shadow:0 5px 18px rgba(23,30,45,.055)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,"Segoe UI",Arial,sans-serif}
+.app{min-height:100vh;display:grid;grid-template-columns:258px minmax(0,1fr);transition:grid-template-columns .22s ease}
+.sidebar{background:var(--nav);color:#fff;padding:19px 13px;display:flex;flex-direction:column;gap:18px;min-width:0;overflow:hidden;transition:padding .22s ease}
+.brand{display:flex;align-items:center;gap:11px;padding:7px 10px 19px;border-bottom:1px solid #303644;white-space:nowrap}.brand-mark{width:36px;height:36px;border-radius:11px;background:linear-gradient(145deg,#f04452,#b91627);display:grid;place-items:center;font-size:14px;font-weight:900;box-shadow:0 4px 12px #d9273840}.brand strong{font-size:15px;letter-spacing:.7px}.brand span{display:block;color:#929bad;font-size:9px;margin-top:4px;letter-spacing:1.3px}
+.nav-title{font-size:10px;color:#818b9d;text-transform:uppercase;letter-spacing:1.5px;padding:0 12px;margin:0 0 2px}nav{display:flex;flex-direction:column;gap:5px}
+nav button{border:1px solid transparent;background:transparent;color:var(--nav-muted);text-align:left;padding:11px 12px;border-radius:10px;font-size:13px;cursor:pointer;display:flex;gap:12px;align-items:center;white-space:nowrap;transition:background .15s,border-color .15s,color .15s}
+nav button:hover{background:var(--nav-hover);color:#fff}nav button.active{background:#30232a;border-color:#63313a;color:#fff;font-weight:650}
+.nav-icon{width:20px;height:20px;flex:0 0 20px;display:grid;place-items:center;color:currentColor}.nav-icon svg{width:19px;height:19px;stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.sidebar-foot{margin-top:auto;color:#818b9d;font-size:10px;padding:12px 10px;border-top:1px solid #303644;white-space:nowrap}
+.app.collapsed{grid-template-columns:76px minmax(0,1fr)}.app.collapsed .sidebar{padding-left:10px;padding-right:10px}.app.collapsed .brand{justify-content:center;padding-left:0;padding-right:0}.app.collapsed .brand-copy,.app.collapsed .nav-title,.app.collapsed .nav-label,.app.collapsed .sidebar-foot{display:none}.app.collapsed nav button{justify-content:center;padding:12px 8px}.app.collapsed .nav-icon{width:22px;flex-basis:22px}
+.main{min-width:0}.topbar{min-height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:16px;padding:12px 26px;position:sticky;top:0;z-index:5}
+.menu-toggle{height:39px;width:39px;flex:0 0 39px;border:1px solid var(--line);background:#fff;border-radius:10px;display:grid;place-items:center;cursor:pointer;color:#3c4351}.menu-toggle:hover{background:#f5f6f9;border-color:#cbd1dc}.menu-toggle svg{width:19px;height:19px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+.global-search{position:relative;width:min(360px,34vw);flex:0 1 360px}.global-search svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:17px;height:17px;stroke:#8a93a3;fill:none;stroke-width:2}.global-search input{padding:10px 12px 10px 38px;background:#f7f8fa;border-color:#e6e9ef;border-radius:10px;font-size:12px}
+.top-title{margin-left:auto;min-width:170px}.top-title h1{font-size:16px;margin:0}.top-title p{margin:4px 0 0;color:var(--muted);font-size:11px}.top-actions{display:flex;gap:8px;align-items:center}
+.content{max-width:1500px;margin:0 auto;padding:26px 28px 50px}section{display:none}section.active{display:block}.page-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;gap:12px}.page-head h2{font-size:21px;margin:0;letter-spacing:-.3px}.page-head p{color:var(--muted);font-size:12px;margin:5px 0 0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:20px}.stat,.card{background:var(--panel);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow)}.stat{padding:17px;border-top:3px solid #d9dee8}.stat:nth-child(2){border-top-color:#d92738}.stat:nth-child(3){border-top-color:#3982d7}.stat:nth-child(4){border-top-color:#22a06b}.stat span{color:var(--muted);font-size:11px}.stat b{display:block;font-size:26px;margin-top:8px;letter-spacing:-.5px}.stat small{color:var(--muted);font-size:10px}
+.card{padding:20px;margin-bottom:17px;border-radius:13px}.card h3{font-size:14px;margin:0 0 16px}.form-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+label{display:flex;flex-direction:column;gap:6px;color:#596171;font-size:11px;font-weight:650;min-width:0}input,select{width:100%;padding:11px 12px;border:1px solid #d9dee8;border-radius:8px;background:#fff;color:var(--ink);font:inherit;font-size:12px;outline:none;transition:border-color .15s,box-shadow .15s}input:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #d9273814}
+.btn{border:1px solid var(--accent);background:var(--accent);color:#fff;padding:10px 15px;border-radius:8px;font-weight:650;font-size:12px;cursor:pointer;white-space:nowrap;transition:background .15s,transform .15s}.btn:hover{background:var(--accent-dark);transform:translateY(-1px)}.btn.secondary{background:#fff;color:#353c49;border-color:#d9dee8}.btn.secondary:hover{background:#f6f7fa;border-color:#bfc6d3}.btn.danger{background:#fff;color:#c21d2b;border-color:#efc8cd}.btn.danger:hover{background:#fff3f4}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.msg{font-size:12px;margin-top:12px;min-height:16px;font-weight:600;color:var(--green)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px;min-width:650px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle}th{font-size:9px;text-transform:uppercase;letter-spacing:.8px;color:#7b8290;background:#f8f9fb}tbody tr:last-child td{border-bottom:0}tbody tr:hover{background:#fcfcfe}
+.badge{display:inline-block;padding:4px 8px;border-radius:20px;font-size:9px;font-weight:750;background:#eef1f6;color:#4f596a}.badge.solo{background:#fff0df;color:#a65b08}.badge.duo{background:#eaf4ff;color:#2265a7}.badge.squad{background:#f1eaff;color:#7041a6}.badge.done{background:#e8f6ee;color:#147a43}
+.search{max-width:300px;margin-bottom:13px}.empty{color:var(--muted);font-size:12px;padding:16px 4px}.match-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.match-card{border:1px solid #dfe3eb;border-radius:12px;padding:16px;background:#fff;box-shadow:0 3px 12px rgba(20,25,40,.035);position:relative;overflow:hidden}.match-card:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}.match-card h4{margin:0 0 8px;font-size:14px}.match-meta{font-size:10px;color:var(--muted);line-height:2}.match-meta b{color:#343b49}.match-card ul{list-style:none;padding:0;margin:11px 0}.match-card li{padding:8px 0;border-bottom:1px dashed var(--line);font-size:11px;display:flex;justify-content:space-between;gap:8px}.match-actions{display:flex;justify-content:flex-end;gap:7px;flex-wrap:wrap;margin-top:12px}
+.inline-note{font-size:10px;color:var(--muted);margin-top:7px}.about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.about-item{padding:17px;border:1px solid var(--line);border-radius:10px;background:#fcfcfd}.about-item b{display:block;margin-bottom:6px;font-size:12px}.about-item p{font-size:11px;color:var(--muted);line-height:1.6;margin:0}
+@media(max-width:900px){.app{grid-template-columns:220px minmax(0,1fr)}.app.collapsed{grid-template-columns:68px minmax(0,1fr)}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.form-grid{grid-template-columns:1fr 1fr}.content{padding:20px 17px 35px}.topbar{padding:10px 16px}}
+@media(max-width:650px){.app{grid-template-columns:1fr}.sidebar{padding:10px;gap:9px}.brand{padding:3px 8px 10px}.brand-copy,.nav-title,.sidebar-foot{display:none}nav{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}nav button{justify-content:center;text-align:center;padding:8px 3px;flex-direction:column;gap:3px;font-size:10px}.nav-icon{width:20px;flex-basis:20px}.app.collapsed{grid-template-columns:1fr}.app.collapsed .sidebar{display:none}.topbar{min-height:62px;gap:8px;padding:9px 11px}.global-search{width:auto;flex:1}.top-title{display:none}.top-actions .btn{padding:9px 10px;font-size:10px}.content{padding:16px 12px 30px}.form-grid{grid-template-columns:1fr}.page-head{align-items:flex-start;flex-direction:column}.about-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app" id="appShell">
+<aside class="sidebar">
+  <div class="brand"><div class="brand-mark">A1</div><div class="brand-copy"><strong>A1TX TOURNAMENT</strong><span>PLAYER & MATCH MANAGER</span></div></div>
+  <div class="nav-title">Workspace</div>
+  <nav>
+    <button class="active" data-tab="home" onclick="showTab('home')" title="Home"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg></span><span class="nav-label">Home</span></button>
+    <button data-tab="addplayer" onclick="showTab('addplayer')" title="Add Player"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M19 8v8m-4-4h8"/></svg></span><span class="nav-label">Add Player</span></button>
+    <button data-tab="creatematch" onclick="showTab('creatematch')" title="Create Match"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M8 3 3 8l5 5 5-5-5-5ZM16 11l-5 5 5 5 5-5-5-5ZM13 8l3-3m-8 11-3 3"/></svg></span><span class="nav-label">Create Match</span></button>
+    <button data-tab="matchhistory" onclick="showTab('matchhistory')" title="Match History"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><span class="nav-label">Match History</span></button>
+    <button data-tab="playerhistory" onclick="showTab('playerhistory')" title="Player History"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="10" cy="8" r="4"/><path d="M3 20a7 7 0 0 1 14 0m2-12v8m-3-4h6"/></svg></span><span class="nav-label">Player History</span></button>
+    <button data-tab="about" onclick="showTab('about')" title="About"><span class="nav-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8h.01"/></svg></span><span class="nav-label">About</span></button>
+  </nav>
+  <div class="sidebar-foot">A1TX Tournament Register<br>Local data saved in this browser</div>
+</aside>
+<div class="main">
+<header class="topbar">
+  <button class="menu-toggle" onclick="toggleSidebar()" title="Hide / Show sidebar" aria-label="Hide or show sidebar"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></button>
+  <div class="global-search"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg><input id="globalSearch" placeholder="Search players, UID, mobile or matches..." oninput="globalSearch()"></div>
+  <div class="top-title"><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Manage players, matches and tournament entries.</p></div>
+  <div class="top-actions"><button class="btn secondary" onclick="exportData()">Export Backup</button></div>
+</header>
+<main class="content">
+
+<section id="home" class="active">
+  <div class="page-head"><div><h2>Home Dashboard</h2><p>Registered players and current tournament overview.</p></div><button class="btn" onclick="showTab('addplayer')">＋ Register Player</button></div>
+  <div class="stats">
+    <div class="stat"><span>Total Players</span><b id="statPlayers">0</b><small>Registered accounts</small></div>
+    <div class="stat"><span>Total Matches</span><b id="statMatches">0</b><small>Created matches</small></div>
+    <div class="stat"><span>Open Matches</span><b id="statOpen">0</b><small>Currently available</small></div>
+    <div class="stat"><span>Total Prize Pool</span><b id="statPrize">₹0</b><small>Across all matches</small></div>
+  </div>
+  <div class="card"><h3>Registered Players — New & Old</h3><input class="search" id="homeSearch" placeholder="Search player name / UID / mobile" oninput="renderHome()"><div id="homePlayers"></div></div>
+  <div class="card"><h3>Active Matches</h3><div id="homeMatches" class="match-grid"></div></div>
+</section>
+
+<section id="addplayer">
+  <div class="page-head"><div><h2>Register / Add Player</h2><p>Enter player details, preferred game mode and registration fee.</p></div></div>
+  <div class="card"><h3>Player Details</h3>
+    <div class="form-grid">
+      <label>Player Name<input id="pName" placeholder="Enter player name"></label>
+      <label>Player UID<input id="pUid" placeholder="Enter player UID"></label>
+      <label>Mobile Number<input id="pNum" type="tel" placeholder="Enter mobile number"></label>
+      <label>Registration Fee (₹)<input id="pFee" type="number" min="0" step="1" placeholder="Enter fee amount"></label>
+      <label>Game Mode<select id="pMode"><option value="Solo">Solo</option><option value="Duo">Duo</option><option value="Squad">Squad</option></select></label>
+    </div>
+    <div style="margin-top:16px"><button class="btn" onclick="addPlayer()">Register Player</button></div><div class="msg" id="pMsg"></div>
+  </div>
+  <div class="card"><h3>Add Registered Player to a Match</h3><div id="addTable"></div></div>
+</section>
+
+<section id="creatematch">
+  <div class="page-head"><div><h2>Create Match</h2><p>Set match mode, room details, entry fee and prize amount.</p></div></div>
+  <div class="card"><h3>Match Setup</h3>
+    <div class="form-grid">
+      <label>Match Name<input id="mName" placeholder="Enter any match name"></label>
+      <label>Game Mode<select id="mMode"><option value="Solo">Solo</option><option value="Duo">Duo</option><option value="Squad">Squad</option></select></label>
+      <label>Room ID<input id="mRoom" placeholder="Enter room ID"></label>
+      <label>Room Password<input id="mPassword" placeholder="Enter room password"></label>
+      <label>Match Prize (₹)<input id="mPrize" type="number" min="0" step="1" placeholder="Enter prize amount"></label>
+      <label>Maximum Players<input id="mCap" type="number" min="1" value="4" placeholder="Enter player limit"></label>
+    </div>
+    <div class="inline-note">Solo, Duo and Squad are available. You can set any match name and room credentials.</div>
+    <div style="margin-top:16px"><button class="btn" onclick="createMatch()">Create Match</button></div><div class="msg" id="mMsg"></div>
+  </div>
+  <div class="card"><h3>All Matches</h3><div id="matchGrid" class="match-grid"></div></div>
+</section>
+
+<section id="matchhistory">
+  <div class="page-head"><div><h2>Match History</h2><p>Review matches and mark a match as completed.</p></div></div>
+  <div class="card"><div id="historyMatches" class="match-grid"></div></div>
+</section>
+
+<section id="playerhistory">
+  <div class="page-head"><div><h2>Player History</h2><p>Player registration fees and match participation.</p></div></div>
+  <div class="card"><input class="search" id="historySearch" placeholder="Search player name / UID / mobile" oninput="renderPlayerHistory()"><div id="playerHistoryTable"></div></div>
+</section>
+
+<section id="about">
+  <div class="page-head"><div><h2>About A1TX Tournament Register</h2><p>Simple tournament player and match management.</p></div></div>
+  <div class="card"><div class="about-grid">
+    <div class="about-item"><b>Player Management</b><p>Register players with name, UID, mobile number, Solo/Duo/Squad game mode and registration fee.</p></div>
+    <div class="about-item"><b>Match Management</b><p>Create Solo, Duo or Squad matches with room ID, room password, prize amount and player capacity.</p></div>
+    <div class="about-item"><b>History</b><p>Check player participation, fees and match records. Completed matches appear in Match History.</p></div>
+    <div class="about-item"><b>Backup</b><p>Use Export Backup to download a JSON copy of the data stored in this browser.</p></div>
+  </div><p class="inline-note">Note: This version stores data locally in the current browser. It does not automatically sync across different devices.</p></div>
+</section>
+
+</main></div></div>
+<script>
+let players = [], matches = [], nextId = 1;
+const $ = id => document.getElementById(id);
+const titles = {home:['Dashboard','Manage players, matches and tournament entries.'],addplayer:['Add Player','Register players and add them to matches.'],creatematch:['Create Match','Set up a new tournament room.'],matchhistory:['Match History','Review completed and active matches.'],playerhistory:['Player History','Review player fees and participation.'],about:['About','Information about this tournament register.']};
+function esc(s){return String(s ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function showTab(name){
+ document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===name));
+ document.querySelectorAll('section').forEach(s=>s.classList.toggle('active',s.id===name));
+ $('pageTitle').textContent=titles[name][0];$('pageSubtitle').textContent=titles[name][1];
+ renderAll();
+}
+function setMsg(id,text){$(id).textContent=text;}
+function isFull(m){return m.members.length>=m.capacity;}
+function saveData(){try{localStorage.setItem('a1txTournamentData',JSON.stringify({players,matches,nextId}));}catch(e){}}
+function loadData(){try{const d=JSON.parse(localStorage.getItem('a1txTournamentData')||'null');if(d){players=Array.isArray(d.players)?d.players:[];matches=Array.isArray(d.matches)?d.matches:[];nextId=d.nextId||1;}}catch(e){players=[];matches=[];nextId=1;}}
+function addPlayer(){
+ const name=$('pName').value.trim(),uid=$('pUid').value.trim(),num=$('pNum').value.trim(),fee=Math.max(0,Number($('pFee').value)||0),mode=$('pMode').value;
+ if(!name||!uid||!num){setMsg('pMsg','Please enter player name, UID and mobile number.');return;}
+ if(players.some(p=>String(p.uid).toLowerCase()===uid.toLowerCase())){setMsg('pMsg','This Player UID is already registered.');return;}
+ players.push({id:nextId++,name,uid,number:num,fee,mode,createdAt:new Date().toISOString()});
+ ['pName','pUid','pNum','pFee'].forEach(i=>$(i).value='');$('pMode').value='Solo';
+ setMsg('pMsg','Player registered successfully: '+name);saveData();renderAll();
+}
+function deletePlayer(id){if(!confirm('Delete this player? Their match entries will also be removed.'))return;players=players.filter(p=>p.id!==id);matches.forEach(m=>m.members=m.members.filter(x=>x!==id));saveData();renderAll();}
+function memberMatches(pid){return matches.filter(m=>m.members.includes(pid));}
+function playerRows(list){
+ if(!list.length)return '<div class="empty">No registered players found.</div>';
+ return `<div class="table-wrap"><table><thead><tr><th>#</th><th>Player</th><th>UID</th><th>Mobile</th><th>Game Mode</th><th>Fee</th><th>Matches</th><th>Action</th></tr></thead><tbody>${list.map((p,i)=>`<tr><td>${i+1}</td><td><b>${esc(p.name)}</b></td><td>${esc(p.uid)}</td><td>${esc(p.number)}</td><td><span class="badge ${String(p.mode||'Solo').toLowerCase()}">${esc(p.mode||'Solo')}</span></td><td>₹${Number(p.fee||0).toLocaleString('en-IN')}</td><td>${memberMatches(p.id).length}</td><td><button class="btn danger" onclick="deletePlayer(${p.id})">Delete</button></td></tr>`).join('')}</tbody></table></div>`;
+}
+function renderHome(){const q=($('homeSearch')?.value||'').trim().toLowerCase();const list=players.filter(p=>!q||[p.name,p.uid,p.number].some(v=>String(v).toLowerCase().includes(q)));$('homePlayers').innerHTML=playerRows(list);$('homeMatches').innerHTML=matchCards(matches.filter(m=>!m.completed));}
+function availableMatchesFor(pid){return matches.filter(m=>!m.completed&&!isFull(m)&&!m.members.includes(pid));}
+function renderAdd(){
+ if(!players.length){$('addTable').innerHTML='<div class="empty">No players registered yet. Register a player first.</div>';return;}
+ $('addTable').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Player</th><th>UID</th><th>Mobile</th><th>Registration Fee</th><th>Select Match</th><th></th></tr></thead><tbody>${players.map(p=>{const a=availableMatchesFor(p.id);const opts=a.length?a.map(m=>`<option value="${m.id}">${esc(m.name)} · ${m.mode} · ${m.members.length}/${m.capacity}</option>`).join(''):'<option value="">No available match</option>';return `<tr><td>${esc(p.name)}</td><td>${esc(p.uid)}</td><td>${esc(p.number)}</td><td>₹${Number(p.fee||0).toLocaleString('en-IN')}</td><td><select id="sel-${p.id}" ${a.length?'':'disabled'}>${opts}</select></td><td><button class="btn" ${a.length?'':'disabled'} onclick="addToMatch(${p.id})">Add</button></td></tr>`;}).join('')}</tbody></table></div>`;
+}
+function addToMatch(pid){const mid=Number($('sel-'+pid).value),m=matches.find(x=>x.id===mid);if(!m)return;if(isFull(m)){alert('This match is full.');return;}if(m.members.includes(pid)){alert('Player is already in this match.');return;}m.members.push(pid);saveData();renderAll();}
+function createMatch(){
+ const name=$('mName').value.trim(),mode=$('mMode').value,room=$('mRoom').value.trim(),password=$('mPassword').value.trim(),prize=Math.max(0,Number($('mPrize').value)||0),cap=Math.max(1,parseInt($('mCap').value,10)||({Solo:1,Duo:2,Squad:4}[mode]));
+ if(!name||!room||!password){setMsg('mMsg','Please enter match name, Room ID and Room Password.');return;}
+ matches.push({id:nextId++,name,mode,room,password,prize,capacity:cap,members:[],completed:false,createdAt:new Date().toISOString()});
+ ['mName','mRoom','mPassword','mPrize'].forEach(i=>$(i).value='');$('mMode').value='Solo';$('mCap').value=1;
+ setMsg('mMsg','Match created successfully: '+name);saveData();renderAll();
+}
+function removeFromMatch(mid,pid){const m=matches.find(x=>x.id===mid);if(m)m.members=m.members.filter(x=>x!==pid);saveData();renderAll();}
+function deleteMatch(mid){if(!confirm('Delete this match?'))return;matches=matches.filter(m=>m.id!==mid);saveData();renderAll();}
+function toggleComplete(mid){const m=matches.find(x=>x.id===mid);if(m)m.completed=!m.completed;saveData();renderAll();}
+function matchCards(list){
+ if(!list.length)return '<div class="empty">No matches to show.</div>';
+ return list.map(m=>`<article class="match-card"><h4>${esc(m.name)}</h4><div class="match-meta"><span class="badge ${String(m.mode).toLowerCase()}">${esc(m.mode)}</span> ${m.completed?'<span class="badge done">Completed</span>':'<span class="badge">Active</span>'}<br>Room ID: <b>${esc(m.room)}</b><br>Room Password: <b>${esc(m.password||'—')}</b><br>Prize: <b>₹${Number(m.prize||0).toLocaleString('en-IN')}</b><br>Players: <b>${m.members.length}/${m.capacity}</b></div><ul>${m.members.length?m.members.map(pid=>{const p=players.find(x=>x.id===pid);return p?`<li><span>${esc(p.name)} <small>(${esc(p.uid)})</small></span><button class="btn secondary" onclick="removeFromMatch(${m.id},${pid})">Remove</button></li>`:''}).join(''):'<li class="empty">No players added yet.</li>'}</ul><div class="match-actions"><button class="btn secondary" onclick="toggleComplete(${m.id})">${m.completed?'Reopen':'Mark Completed'}</button><button class="btn danger" onclick="deleteMatch(${m.id})">Delete</button></div></article>`).join('');
+}
+function renderMatches(){$('matchGrid').innerHTML=matchCards(matches);}
+function renderHistory(){$('historyMatches').innerHTML=matchCards(matches.filter(m=>m.completed));}
+function renderPlayerHistory(){
+ const q=($('historySearch')?.value||'').trim().toLowerCase(),list=players.filter(p=>!q||[p.name,p.uid,p.number].some(v=>String(v).toLowerCase().includes(q)));
+ if(!list.length){$('playerHistoryTable').innerHTML='<div class="empty">No player history found.</div>';return;}
+ $('playerHistoryTable').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Player</th><th>UID</th><th>Game Mode</th><th>Fee Paid</th><th>Participated Matches</th><th>Match Details</th></tr></thead><tbody>${list.map(p=>{const ms=memberMatches(p.id);return `<tr><td><b>${esc(p.name)}</b><br><small>${esc(p.number)}</small></td><td>${esc(p.uid)}</td><td><span class="badge ${String(p.mode||'Solo').toLowerCase()}">${esc(p.mode||'Solo')}</span></td><td>₹${Number(p.fee||0).toLocaleString('en-IN')}</td><td>${ms.length}</td><td>${ms.map(m=>esc(m.name)+' ('+esc(m.mode)+')').join(', ')||'—'}</td></tr>`}).join('')}</tbody></table></div>`;
+}
+function renderStats(){$('statPlayers').textContent=players.length;$('statMatches').textContent=matches.length;$('statOpen').textContent=matches.filter(m=>!m.completed&&!isFull(m)).length;$('statPrize').textContent='₹'+matches.reduce((s,m)=>s+Number(m.prize||0),0).toLocaleString('en-IN');}
+function toggleSidebar(){ $('appShell').classList.toggle('collapsed'); }
+function globalSearch(){
+ const q=$('globalSearch').value.trim().toLowerCase();
+ if(!q){renderAll();return;}
+ const playerHits=players.filter(p=>[p.name,p.uid,p.number,p.mode].some(v=>String(v||'').toLowerCase().includes(q)));
+ const matchHits=matches.filter(m=>[m.name,m.mode,m.room].some(v=>String(v||'').toLowerCase().includes(q)));
+ $('homePlayers').innerHTML=playerRows(playerHits);
+ $('homeMatches').innerHTML=matchCards(matchHits);
+}
+function renderAll(){renderStats();renderHome();renderAdd();renderMatches();renderHistory();renderPlayerHistory();}
+function exportData(){const blob=new Blob([JSON.stringify({players,matches,nextId},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='a1tx_tournament_backup.json';a.click();URL.revokeObjectURL(a.href);}
+loadData();renderAll();
+</script>
+</body>
+</html>
